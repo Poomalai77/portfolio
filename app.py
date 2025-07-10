@@ -77,7 +77,9 @@ html = '''
 <body>
 
     <header>
-        <img src="https://res.cloudinary.com/dtjjgiitl/image/upload/q_auto:good,f_auto,fl_progressive/v1752165287/q5c84ofs2q72r4ujfimk.jpg">
+        <img src="https://res.cloudinary.com/dtjjgiitl/image/upload/q_auto:good,f_auto,fl_progressive/v1752166271/f419qyd3sdd7u3baigwp.jpg
+
+">
         <h1>Hi, I'm Poomalai</h1>
         <p>Embedded Developer | IoT Enthusiast | UI/UX Designer</p>
         <a href="#contact" class="btn btn-custom">Hire Me</a>
