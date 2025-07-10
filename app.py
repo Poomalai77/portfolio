@@ -8,135 +8,141 @@ html = '''
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Poomalai B - Embedded Developer Portfolio</title>
+    <title>Poomalai B - Embedded Developer</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #121212;
-            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
             font-family: 'Segoe UI', sans-serif;
-            padding: 30px;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
         }
-        h1, h2 {
-            color: #00ffc8;
-            border-bottom: 2px solid #00ffc8;
-            display: inline-block;
-            margin-bottom: 20px;
+        header {
+            background: rgba(0,0,0,0.6);
+            padding: 60px 20px;
+            text-align: center;
+            color: #fff;
         }
-        .section {
-            margin-bottom: 60px;
+        header h1 {
+            font-size: 3rem;
+            color: #ff2a6d;
+        }
+        header p {
+            font-size: 1.2rem;
+        }
+        .btn-custom {
+            background-color: #ff2a6d;
+            color: #fff;
+            border: none;
+            padding: 10px 25px;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+        .btn-custom:hover {
+            background-color: #ff0050;
+            transform: scale(1.05);
+        }
+        section {
+            padding: 60px 20px;
+        }
+        .section-title {
+            font-size: 2rem;
+            border-left: 5px solid #00ffe0;
+            padding-left: 10px;
+            margin-bottom: 30px;
+            color: #00ffe0;
         }
         .card {
-            background-color: #1e1e1e;
-            border: 1px solid #333;
-            box-shadow: 0 0 15px rgba(0,255,200,0.2);
-            color: #ccc;
+            background-color: #1e1e2f;
+            border: none;
+            box-shadow: 0 0 10px rgba(0, 255, 200, 0.1);
+            color: #fff;
+            margin-bottom: 20px;
         }
-        a {
-            color: #00ffc8;
-            text-decoration: none;
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #aaa;
         }
-        a:hover {
-            text-decoration: underline;
-        }
-        .project-img {
-            width: 100%;
-            border-radius: 10px;
-        }
-        .container {
-            max-width: 900px;
+        .profile-pic {
+            border-radius: 50%;
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border: 4px solid #ff2a6d;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1 class="text-center">Poomalai B</h1>
-        <p class="text-center">Embedded Developer | IoT Engineer | UI/UX Designer</p>
 
-        <div class="section">
-            <h2>About Me</h2>
-            <p>I specialize in embedded systems and love building real-world projects using Arduino, Raspberry Pi, and various sensors. I also enjoy designing clean, functional UI/UX using tools like Figma.</p>
+    <header>
+        <img src="https://res.cloudinary.com/dtjjgiitl/image/upload/q_auto:good,f_auto,fl_progressive/v1752165287/q5c84ofs2q72r4ujfimk.jpg">
+        <h1>Hi, I'm Poomalai</h1>
+        <p>Embedded Developer | IoT Enthusiast | UI/UX Designer</p>
+        <a href="#contact" class="btn btn-custom">Hire Me</a>
+        <a href="#projects" class="btn btn-custom">View Projects</a>
+    </header>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <p>I’m passionate about electronics, embedded systems, and intuitive design. I create real-world IoT projects using Arduino and Raspberry Pi, and I also enjoy crafting clean UI/UX interfaces using Figma and Canva.</p>
         </div>
+    </section>
 
-        <div class="section">
-            <h2>Skills</h2>
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Skills</h2>
             <ul>
                 <li>Embedded C, Python, IoT Protocols</li>
-                <li>PCB Design - KiCad, EasyEDA</li>
+                <li>PCB Design (KiCad, EasyEDA)</li>
                 <li>Arduino, Raspberry Pi, Sensors</li>
-                <li>UI/UX Design - Figma, Canva</li>
-                <li>Simulation - Proteus, MATLAB, ThingSpeak</li>
+                <li>UI/UX Design (Figma, Canva)</li>
+                <li>Simulation Tools (Proteus, MATLAB, ThingSpeak)</li>
             </ul>
         </div>
+    </section>
 
-        <div class="section">
-            <h2>Education</h2>
-            <ul>
-                <li><strong>KSR Institute of Engineering & Technology</strong> – B.E. (2022–2026)</li>
-                <li><strong>HSC:</strong> Bharathi Matric Hr. Sec School (75%)</li>
-                <li><strong>SSLC:</strong> Bharathi Matric Hr. Sec School (90%)</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>Internships</h2>
-            <ul>
-                <li><strong>NoviTech R&D Pvt Ltd</strong> – IoT Hardware & Sensor Communication</li>
-                <li><strong>Rabbit QR</strong> – UI/UX Design using Figma</li>
-                <li><strong>Brainery Spot</strong> – Arduino & Raspberry Pi Projects</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>Projects</h2>
-            <div class="row g-4">
-                <div class="col-md-6">
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="row">
+                <div class="col-md-4">
                     <div class="card p-3">
-                        <img src="https://via.placeholder.com/400x200?text=Color+Sorting+Machine" class="project-img" alt="Color Sorting Machine">
-                        <h5 class="mt-3">Color Sorting Machine</h5>
-                        <p>Using Raspberry Pi & camera to detect and sort objects based on color.</p>
+                        <h5>Color Sorting Machine</h5>
+                        <p>Uses Raspberry Pi Zero W and camera to detect object colors and sort them using servo motors.</p>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="card p-3">
-                        <img src="https://via.placeholder.com/400x200?text=Gas+Leakage+Detection" class="project-img" alt="Gas Leakage Detection">
-                        <h5 class="mt-3">Gas Leakage Detection</h5>
-                        <p>Arduino + Gas Sensor with buzzer and LED alert system for safety.</p>
+                        <h5>Gas Leakage Detection</h5>
+                        <p>Arduino-based gas sensor system with alert via buzzer and LED when leaks are detected.</p>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="card p-3">
-                        <img src="https://via.placeholder.com/400x200?text=Mobile+App+UI" class="project-img" alt="Mobile App UI">
-                        <h5 class="mt-3">Mobile App UI/UX Design</h5>
-                        <p>Clean, responsive UI designed with Figma for a modern app concept.</p>
+                        <h5>Mobile App UI</h5>
+                        <p>Clean mobile UI designed in Figma focusing on modern layout and responsive experience.</p>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <div class="section">
-            <h2>Certifications</h2>
-            <ul>
-                <li>Introduction to IoT – NPTEL</li>
-                <li>Arduino vs Raspberry Pi – Great Learning</li>
-                <li>Wiring Harness Workshop – KSRIET</li>
-            </ul>
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact</h2>
+            <p><strong>Email:</strong> poomalairaja33@gmail.com</p>
+            <p><strong>Phone:</strong> +91 9159842429</p>
+            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/poomalai-b-00778a262" target="_blank" style="color:#00ffe0;">poomalai-b</a></p>
         </div>
+    </section>
 
-        <div class="section">
-            <h2>Other Activities</h2>
-            <p>NCC B & C Certificate Holder</p>
-        </div>
+    <footer>
+        © 2025 Poomalai B — Portfolio
+    </footer>
 
-        <div class="section">
-            <h2>Contact</h2>
-            <ul>
-                <li><strong>Email:</strong> poomalairaja33@gmail.com</li>
-                <li><strong>Phone:</strong> +91 9159842429</li>
-                <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/poomalai-b-00778a262" target="_blank">poomalai-b</a></li>
-            </ul>
-        </div>
-    </div>
 </body>
 </html>
 '''
