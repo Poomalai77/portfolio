@@ -1,158 +1,140 @@
 from flask import Flask, render_template_string
-import os
 
 app = Flask(__name__)
 
-html = '''
+# Portfolio data structure
+portfolio_data = {
+    "name": "Poomalai B",
+    "title": "IoT & Embedded Systems Engineer",
+    "contact": {
+        "email": "poomalairaja33@gmail.com",
+        "phone": "+91 9159842429",
+        "linkedin": "linkedin.com/in/poomalai-b-00778a262"
+    },
+    "about": "Electronics enthusiast specializing in Raspberry Pi and Arduino projects with hands-on experience in PCB design and IoT systems.",
+    
+    "projects": [
+        {
+            "title": "Color Sorting Machine",
+            "tech": ["Raspberry Pi Zero W", "OpenCV", "Servo Motors"],
+            "description": "Developed a computer vision system that sorts objects by color with 95% accuracy."
+        },
+        {
+            "title": "Gas Leakage Detection",
+            "tech": ["Arduino Uno", "MQ-2 Sensor", "Buzzer Alert"],
+            "description": "Safety system that detects hazardous gases and triggers visual/audio alarms."
+        }
+    ],
+    
+    "skills": {
+        "Programming": ["Python", "Embedded C"],
+        "Hardware": ["Raspberry Pi", "Arduino", "Sensor Integration"],
+        "Design": ["KiCad PCB Design", "Figma UI/UX"]
+    },
+    
+    "education": [
+        {
+            "degree": "Electronics And Communication Engineering",
+            "institution": "KSR Institute For Engineering And Technology",
+            "year": "2022-2026",
+            "score": "7.5 CGPA"
+        }
+    ],
+    
+    "certifications": [
+        "NPTEL: Introduction to IoT",
+        "Great Learning: Arduino vs Raspberry Pi"
+    ]
+}
+
+# HTML template as a string
+html_template = '''
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Poomalai B - Embedded Developer</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>{{ data.name }} - Portfolio</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            color: #fff;
-        }
-        header {
-            background: rgba(0,0,0,0.6);
-            padding: 60px 20px;
-            text-align: center;
-            color: #fff;
-        }
-        header h1 {
-            font-size: 3rem;
-            color: #ff2a6d;
-        }
-        header p {
-            font-size: 1.2rem;
-        }
-        .btn-custom {
-            background-color: #ff2a6d;
-            color: #fff;
-            border: none;
-            padding: 10px 25px;
-            margin: 10px;
-            transition: all 0.3s ease;
-        }
-        .btn-custom:hover {
-            background-color: #ff0050;
-            transform: scale(1.05);
-        }
-        section {
-            padding: 60px 20px;
-        }
-        .section-title {
-            font-size: 2rem;
-            border-left: 5px solid #00ffe0;
-            padding-left: 10px;
-            margin-bottom: 30px;
-            color: #00ffe0;
-        }
-        .card {
-            background-color: #1e1e2f;
-            border: none;
-            box-shadow: 0 0 10px rgba(0, 255, 200, 0.1);
-            color: #fff;
-            margin-bottom: 20px;
-        }
-        footer {
-            text-align: center;
-            padding: 30px;
-            color: #aaa;
-        }
-        .profile-pic {
-            border-radius: 50%;
-            width: 180px;
-            height: 180px;
-            object-fit: cover;
-            border: 4px solid #ff2a6d;
-        }
+        body { font-family: 'Segoe UI', sans-serif; max-width: 800px; margin: auto; padding: 20px; background-color: #f4f6f8; color: #2c3e50; }
+        header { text-align: center; margin-bottom: 30px; }
+        h1 { color: #2c3e50; }
+        h2 { color: #3498db; border-bottom: 2px solid #3498db; padding-bottom: 5px; }
+        .project { background: #ffffff; padding: 15px; margin-bottom: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .skills-list { display: flex; flex-wrap: wrap; gap: 15px; }
+        .skill-category { flex: 1; min-width: 200px; background: #ffffff; padding: 10px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        ul { padding-left: 20px; }
+        section { margin-bottom: 30px; }
+        footer { text-align: center; font-size: 14px; color: #888; margin-top: 30px; }
     </style>
 </head>
 <body>
-
     <header>
-        <img src="https://res.cloudinary.com/dtjjgiitl/image/upload/q_auto:good,f_auto,fl_progressive/v1752166271/f419qyd3sdd7u3baigwp.jpg
-
-">
-        <h1>Hi, I'm Poomalai</h1>
-        <p>Embedded Developer | IoT Enthusiast | UI/UX Designer</p>
-        <a href="#contact" class="btn btn-custom">Hire Me</a>
-        <a href="#projects" class="btn btn-custom">View Projects</a>
+        <h1>{{ data.name }}</h1>
+        <h3>{{ data.title }}</h3>
+        <p>{{ data.contact.email }} | {{ data.contact.phone }} | {{ data.contact.linkedin }}</p>
     </header>
 
-    <section id="about">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <p>I’m passionate about electronics, embedded systems, and intuitive design. I create real-world IoT projects using Arduino and Raspberry Pi, and I also enjoy crafting clean UI/UX interfaces using Figma and Canva.</p>
-        </div>
+    <section>
+        <h2>About Me</h2>
+        <p>{{ data.about }}</p>
     </section>
 
-    <section id="skills">
-        <div class="container">
-            <h2 class="section-title">Skills</h2>
-            <ul>
-                <li>Embedded C, Python, IoT Protocols</li>
-                <li>PCB Design (KiCad, EasyEDA)</li>
-                <li>Arduino, Raspberry Pi, Sensors</li>
-                <li>UI/UX Design (Figma, Canva)</li>
-                <li>Simulation Tools (Proteus, MATLAB, ThingSpeak)</li>
-            </ul>
+    <section>
+        <h2>Projects</h2>
+        {% for project in data.projects %}
+        <div class="project">
+            <h3>{{ project.title }}</h3>
+            <p><strong>Technologies:</strong> {{ ", ".join(project.tech) }}</p>
+            <p>{{ project.description }}</p>
         </div>
+        {% endfor %}
     </section>
 
-    <section id="projects">
-        <div class="container">
-            <h2 class="section-title">Projects</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card p-3">
-                        <h5>Color Sorting Machine</h5>
-                        <p>Uses Raspberry Pi Zero W and camera to detect object colors and sort them using servo motors.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card p-3">
-                        <h5>Gas Leakage Detection</h5>
-                        <p>Arduino-based gas sensor system with alert via buzzer and LED when leaks are detected.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card p-3">
-                        <h5>Mobile App UI</h5>
-                        <p>Clean mobile UI designed in Figma focusing on modern layout and responsive experience.</p>
-                    </div>
-                </div>
+    <section>
+        <h2>Skills</h2>
+        <div class="skills-list">
+            {% for category, skills in data.skills.items() %}
+            <div class="skill-category">
+                <h3>{{ category }}</h3>
+                <ul>
+                    {% for skill in skills %}
+                    <li>{{ skill }}</li>
+                    {% endfor %}
+                </ul>
             </div>
+            {% endfor %}
         </div>
     </section>
 
-    <section id="contact">
-        <div class="container">
-            <h2 class="section-title">Contact</h2>
-            <p><strong>Email:</strong> poomalairaja33@gmail.com</p>
-            <p><strong>Phone:</strong> +91 9159842429</p>
-            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/poomalai-b-00778a262" target="_blank" style="color:#00ffe0;">poomalai-b</a></p>
-        </div>
+    <section>
+        <h2>Education</h2>
+        {% for edu in data.education %}
+        <p>
+            <strong>{{ edu.degree }}</strong><br>
+            {{ edu.institution }} ({{ edu.year }})<br>
+            <em>{{ edu.score }}</em>
+        </p>
+        {% endfor %}
+    </section>
+
+    <section>
+        <h2>Certifications</h2>
+        <ul>
+            {% for cert in data.certifications %}
+            <li>{{ cert }}</li>
+            {% endfor %}
+        </ul>
     </section>
 
     <footer>
-        © 2025 Poomalai B — Portfolio
+        &copy; {{ data.name }} | Portfolio built with Flask
     </footer>
-
 </body>
 </html>
 '''
 
 @app.route('/')
 def portfolio():
-    return render_template_string(html)
+    return render_template_string(html_template, data=portfolio_data)
 
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port, debug=True)
+    app.run(debug=True)
